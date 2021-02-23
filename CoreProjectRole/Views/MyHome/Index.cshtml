@@ -1,0 +1,99 @@
+﻿@model CoreProjectRole.ViewModels.VmCategoryWiseProduct
+@{
+    ViewData["Title"] = "MyHome Page";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h4>Category</h4>
+        <p>
+            <a href="/MyHome/Create" class="btn btn-sm btn-success">Create New</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Avaiable Proudct
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.CategoryList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        <a href="/MyHome/Index?id=@item.CategoryId" class="btn btn-sm btn-primary">Details</a> |
+                        <a href="/MyHome/EditMultiple?id=@item.CategoryId" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="/MyHome/DeleteMultiple?id=@item.CategoryId" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete this category with products?')">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-8">
+        <h4>Prdoucts of @Model.CategoryName</h4>
+        <p>
+            <a href="/MyHome/Create" class="btn btn-sm btn-success">Create New</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    ExpireDate
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    ImagePath
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.ProductList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpireDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        <img src="@item.ImagePath" style="height:150px" />
+                    </td>
+                    <td>
+                        <a href="/MyHome/Edit?id=@item.ProductId" class="btn btn-sm btn-warning">Edit</a> |
+                        <a href="/MyHome/Delete?id=@item.ProductId" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete this product?')">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</div>
